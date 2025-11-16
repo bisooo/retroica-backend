@@ -16,7 +16,7 @@ trap cleanup SIGINT SIGTERM
 
 # Start backend services in background
 echo "📦 Starting backend services..."
-docker-compose up -d
+docker-compose up -d --build
 
 # Wait for backend port to be available
 echo "⏳ Waiting for backend to be ready..."

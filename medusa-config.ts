@@ -22,9 +22,41 @@ module.exports = defineConfig({
         redisUrl: process.env.CACHE_REDIS_URL,
       },
     },
+    {
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/payment-stripe",
+            id: "stripe",
+            options: {
+              apiKey: process.env.STRIPE_API_KEY,
+              automaticPaymentMethods: true, // Enable Apple Pay & Google Pay
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: "@medusajs/medusa/fulfillment",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/fulfillment-manual",
+            id: "manual",
+          },
+          {
+            resolve: "./src/modules/my-fulfillment",
+            id: "my-fulfillment",
+          },
+        ],
+      },
+    },
+
   ],
   admin: {
     disable: process.env.DISABLE_MEDUSA_ADMIN === "true",
-    backendUrl: process.env.MEDUSA_BACKEND_URL
+    backendUrl: process.env.MEDUSA_BACKEND_URL,
+    path: '/dashboard'
   }
 })
