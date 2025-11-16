@@ -1,36 +1,17 @@
-# ------------------------------
-# Dockerfile.prod
-# ------------------------------
+FROM node:20-alpine
 
-# Stage 1: Builder
-FROM node:20-slim AS builder
-WORKDIR /app
+WORKDIR /server
 
-# Copy package files first for caching
+# Copy package files
 COPY package*.json ./
-
-# Install all dependencies (including dev) for build
 RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Build Medusa server (outputs /dist)
+# Build for production
 RUN npm run build
 
-# Stage 2: Production
-FROM node:20-slim
-WORKDIR /app
-
-# Copy built output from builder stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package*.json ./
-
-# Install only production dependencies
-RUN npm ci --omit=dev
-
-# Expose Medusa server ports
 EXPOSE 9000 7001
 
-# Start Medusa in production mode
 CMD ["npm", "start"]
