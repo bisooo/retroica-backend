@@ -1,0 +1,27 @@
+# Stage 1: Build
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Install all deps (dev included for build)
+COPY package*.json ./
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build Medusa server
+RUN npm run build
+
+# Stage 2: Production
+FROM node:20-alpine
+WORKDIR /app
+
+# Copy only built output + prod dependencies
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package*.json ./
+
+# Install only production dependencies
+RUN npm ci --omit=dev
+
+EXPOSE 9000 7001
+CMD ["npm", "start"]
