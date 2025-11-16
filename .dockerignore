@@ -1,0 +1,2 @@
+# Ignore local node_modules; the image will install its own
+node_modules

@@ -4,7 +4,7 @@ WORKDIR /server
 
 # Copy package files
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --omit=dev
 
 # Copy source code
 COPY . .
