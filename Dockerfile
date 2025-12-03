@@ -1,10 +1,10 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -14,4 +14,4 @@ RUN npm run build
 
 EXPOSE 9000 7001
 
-CMD ["npm", "start"]
+CMD ["npm", "run","dev"]
