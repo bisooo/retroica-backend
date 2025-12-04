@@ -31,8 +31,8 @@ services:
 
   backend:
     build:
-        context: .
-        dockerfile: Dockerfile.LOCAL
+        context: ../
+        dockerfile: .docker/Dockerfile.LOCAL
     container_name: retroica-backend
     environment:
       DATABASE_URL: postgres://retroica:retroica21@postgres:5432/retroica_store
