@@ -8,4 +8,4 @@ nixPkgs = ["nodejs", "yarn"]
 cmds = ["yarn install"]
 
 [build.nixpacksPlan.providers]
-providers = ["node"]
+providers = ["python", "node"]
