@@ -5,7 +5,7 @@ builder = "nixpacks"
 nixPkgs = ["nodejs", "yarn"]
 
 [build.nixpacksPlan.phases.install]
-cmds=["yarn install"]
+cmds = ["yarn install"]
 
 [build.nixpacksPlan.providers]
-"providers": ["node"]
+providers = ["node"]
