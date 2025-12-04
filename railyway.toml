@@ -1,14 +1,2 @@
 [build]
-builder = "RAILPACK"
-
-[deploy]
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 3
-
-[[deploy.environmentVariables]]
-name = "NODE_ENV"
-value = "production"
-
-[[deploy.environmentVariables]]
-name = "PORT"
-value = "9000"
+builder = "nixpacks"
