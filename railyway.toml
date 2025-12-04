@@ -1,5 +1,5 @@
 [build]
-builder = "dockerfile"
+builder = "RAILPACK"
 
 [deploy]
 restartPolicyType = "on_failure"
