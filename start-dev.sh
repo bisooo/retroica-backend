@@ -6,7 +6,7 @@ cleanup() {
     echo ""
     echo "🛑 Shutting down services..."
     cd ../retroica-backend  # Go back to backend directory
-    docker-compose down
+    docker compose down
     echo "✅ Services stopped"
     exit 0
 }
@@ -16,7 +16,7 @@ trap cleanup SIGINT SIGTERM
 
 # Start backend services in background
 echo "📦 Starting backend services..."
-docker-compose up -d --build
+docker compose up --build -d
 
 # Wait for backend port to be available
 echo "⏳ Waiting for backend to be ready..."
