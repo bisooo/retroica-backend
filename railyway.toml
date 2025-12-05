@@ -1,11 +1,17 @@
 [build]
 builder = "nixpacks"
+# Build command: compile Medusa & install server deps
+buildCommand = "npm run build && cd .medusa/server && npm ci --omit=dev --prefer-offline --no-audit --no-fund"
 
-[build.nixpacksPlan.phases.setup]
-nixPkgs = ["nodejs", "yarn"]
+[start]
+# Start production server
+cmd = "cd .medusa/server && npm start"
 
-[build.nixpacksPlan.phases.install]
-cmds = ["yarn install"]
+[cache]
+# Cache the runtime node_modules to speed up subsequent builds
+paths = [
+  ".medusa/server/node_modules"
+]
 
 [build.nixpacksPlan]
 providers = ["node"]
