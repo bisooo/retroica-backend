@@ -1,5 +1,5 @@
 [build]
-builder = "railpack"
+builder = "nixpacks"
 # Build command: compile Medusa & install server deps
 buildCommand = "npm run build && cd .medusa/server && npm ci --omit=dev --prefer-offline --no-audit --no-fund"
 
@@ -8,3 +8,6 @@ buildCommand = "npm run build && cd .medusa/server && npm ci --omit=dev --prefer
 paths = [
   ".medusa/server/node_modules"
 ]
+
+[build.nixpacksPlan]
+providers = ["node"]
