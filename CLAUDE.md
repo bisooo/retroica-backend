@@ -14,6 +14,7 @@ Cross-repo map and decisions: `retroica-admin/docs/SYSTEM.md`. Status and roadma
 
 ## Commands
 - Local stack: `docker compose up` (Postgres 17 + Redis + backend on :9000). `start-dev.sh` also starts the storefront from `../retroica`.
+- Cloud sessions: `scripts/dev-up.sh` (run by the environment setup script) starts local Postgres 16 + Redis, installs all three repos, migrates, seeds and writes env files; `--serve` starts backend :9000, storefront :3000, admin :3001. Logs in `/tmp/retroica-logs`.
 - `npm run dev`, `npm run build`, `npm run seed` (still the Medusa demo seed; to be replaced)
 - Tests: `npm run test:integration:http` (only the starter health check exists), `test:unit`, `test:integration:modules`.
 - Medusa admin UI is served at `/dashboard` (not `/app`; `start-dev.sh` prints the old path).
