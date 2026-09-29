@@ -24,7 +24,10 @@ Cross-repo map and decisions: `retroica-admin/docs/SYSTEM.md`. Status and roadma
 - Check the installed Medusa docs for 2.10 before using workflow or module APIs; the storefront's `@medusajs/js-sdk` is on ^2.11, so keep an eye on version skew.
 
 ## Deployment
-Railway, nixpacks builder. Config file is committed as `railyway.toml` (typo: Railway looks for `railway.toml` unless a custom path is set in the service settings; confirm which one is live before editing it). `predeploy` runs `medusa db:migrate`. Pushing `main` may deploy, so don't push without B's OK.
+Railway, nixpacks builder. Config file is committed as `railyway.toml` (typo: Railway looks for `railway.toml` unless a custom path is set in the service settings; confirm which one is live before editing it). `predeploy` runs `medusa db:migrate`.
 
 ## Git
-One-line imperative commit messages under ~60 chars.
+- Commit as B: author and committer `Basel <baselsamy1999@gmail.com>`. No Claude author, no `Co-Authored-By` or "Generated with Claude Code" trailers.
+- No branches or PRs. Push small commits straight to `main` once the work is planned, reviewed and verified. Rebase onto `origin/main` first.
+- One-line imperative commit messages under ~60 chars.
+- Pushing `main` may deploy to Railway.
