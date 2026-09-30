@@ -61,6 +61,8 @@ COOKIE_SECRET=dev-only-$(openssl rand -hex 8)
 STRIPE_API_KEY=${STRIPE_TEST_SECRET_KEY:-sk_test_missing}
 EOF
 fi
+# The setup script runs without the environment's variables, so refresh the key on later runs.
+[ -z "${STRIPE_TEST_SECRET_KEY:-}" ] || sed -i "s|^STRIPE_API_KEY=.*|STRIPE_API_KEY=$STRIPE_TEST_SECRET_KEY|" "$BE/.env"
 
 # 4. Migrate, and seed once (seed needs the admin UI disabled or it looks for a production admin build).
 log "medusa db:migrate"
